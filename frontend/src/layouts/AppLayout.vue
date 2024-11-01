@@ -1,5 +1,4 @@
 <script setup>
-
 import AppLayoutHeader from "@/layouts/AppLayoutHeader.vue";
 </script>
 
