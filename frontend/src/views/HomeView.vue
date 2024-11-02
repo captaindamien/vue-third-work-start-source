@@ -1,6 +1,7 @@
 <script setup>
 import columns from '@/mocks/columns.json'
 import users from '@/mocks/users.json'
+import rawTasks from '@/mocks/tasks.json'
 import {STATUSES} from '@/common/constants'
 import {normalizeTask, getTagsArrayFromString} from '@/common/helpers'
 
@@ -9,8 +10,8 @@ const getImage = image => {
   return new URL(`@/assets/img/${image}`, import.meta.url).href
 }
 
-const normalizedTask = rawTasks.map(task => normalizeTask(task))
-const columnTask = normalizedTasks
+const normalizedTasks = rawTasks.map(task => normalizeTask(task))
+const columnTasks = normalizedTasks
   .filter(({ columnId }) => columnId)
   .reduce((accumulator, task) => {
     task.tags = getTagsArrayFromString(task.tags)
@@ -39,7 +40,7 @@ const columnTask = normalizedTasks
               >
                 <a class="user-filter__button">
                   <img
-                      src="getImage(user.avatar)"
+                      :src="getImage(user.avatar)"
                       alt="Аватар юзера"
                       width="24"
                       height="24"
@@ -83,8 +84,8 @@ const columnTask = normalizedTasks
                 <div v-if="task.user" class="task__user">
                   <div class="task__avatar">
                     <img
-                        src="getImage(task.user.avatar)"
-                        alt="task.user.name"
+                        :src="getImage(task.user.avatar)"
+                        :alt="task.user.name"
                         width="20"
                         height="20"
                     />
